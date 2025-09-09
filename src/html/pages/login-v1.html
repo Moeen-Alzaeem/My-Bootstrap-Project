@@ -1,0 +1,102 @@
+# تعديل محتوى صفحة login-v1.html لتعريب الواجهة وإضافة دعم RTL والوضع الليلي والتنبيهات
+arabic_login_html = '''<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
+        background-color: #f8f9fa;
+      }
+      .dark-mode {
+        background-color: #1e1e2d;
+        color: white;
+      }
+      .alert {
+        color: white;
+        background-color: #e74c3c;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      .mode-toggle {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #6c757d;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mode-toggle" onclick="toggleMode()">الوضع الليلي</div>
+    <div class="auth-main v1">
+      <div class="auth-wrapper">
+        <div class="auth-form">
+          <div class="card my-5">
+            <div class="card-body">
+              <div class="text-center">
+                <img src="../../assets/images/authentication/img-auth-login.png" alt="تسجيل الدخول" class="img-fluid mb-3" />
+                <h4 class="f-w-500 mb-1">تسجيل الدخول عبر البريد الإلكتروني</h4>
+                <p class="mb-3">ليس لديك حساب؟ <a href="register-v1.html" class="link-primary ms-1">أنشئ حساب</a></p>
+              </div>
+              <div id="errorBox" class="alert" style="display:none;">❌ البريد أو كلمة المرور غير صحيحة</div>
+              <div class="mb-3">
+                <label for="email" class="form-label">البريد الإلكتروني</label>
+                <input type="email" class="form-control" id="email" placeholder="أدخل بريدك الإلكتروني" />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">كلمة المرور</label>
+                <input type="password" class="form-control" id="password" placeholder="••••••••" />
+              </div>
+              <div class="d-grid">
+                <button onclick="validateLogin()" class="btn btn-primary">دخول</button>
+              </div>
+              <p class="text-center mt-3"><a href="forgot-password-v1.html">نسيت كلمة المرور؟</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function validateLogin() {
+        const email = document.getElementById("email").value.trim();
+        const pass = document.getElementById("password").value.trim();
+        const errorBox = document.getElementById("errorBox");
+        if (!email || !pass) {
+          errorBox.textContent = "❌ الرجاء إدخال البريد وكلمة المرور";
+          errorBox.style.display = "block";
+        } else {
+          // محاكاة خطأ في تسجيل الدخول
+          errorBox.textContent = "❌ البريد أو كلمة المرور غير صحيحة";
+          errorBox.style.display = "block";
+        }
+      }
+
+      function toggleMode() {
+        document.body.classList.toggle("dark-mode");
+      }
+    </script>
+  </body>
+</html>
+'''
+
+# حفظ النسخة المعدلة في ملف جديد
+output_path = "/mnt/data/login-v1-arabic.html"
+with open(output_path, "w", encoding="utf-8") as f:
+    f.write(arabic_login_html)
+
+output_path
